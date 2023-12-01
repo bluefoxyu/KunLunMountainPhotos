@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>坤仑山</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: linear-gradient(45deg, #3498db, #e74c3c, #2ecc71); /* 默认背景 */
+            transition: background 0.5s ease;
+            position: relative;
+        }
+
+        .container {
+            position: relative;
+            text-align: center;
+        }
+
+        .chicken-mountain {
+            width: 60vw; /* 调整宽度，根据需要 */
+            max-height: 85vh; /* 设置最大高度以保持纵横比 */
+            object-fit: cover;
+            border: 10px solid #fff; /* 添加漂亮的边框 */
+            border-radius: 15px; /* 可选：为边框添加圆角效果 */
+            filter: brightness(70%); /* 添加轻微的亮度滤镜 */
+        }
+
+        .title-container {
+            background-color: rgba(255, 255, 255, 0.8); /* 半透明白色背景 */
+            padding: 10px;
+            border: 5px solid #fff; /* 添加漂亮的边框 */
+            border-radius: 15px; /* 可选：为边框添加圆角效果 */
+            filter: brightness(70%); /* 添加轻微的亮度滤镜 */
+        }
+
+        .title {
+            font-family: 'Cursive', cursive; /* 更改字体风格 */
+            color: #000; /* 标题文字颜色，可根据需要调整 */
+            font-size: 2em;
+            margin: 0;
+        }
+
+        .color-change-button,
+        .add-elements-button {
+            margin-top: 10px;
+            padding: 10px;
+            font-size: 1em;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .color-change-button {
+            background-color: #3498db;
+            color: #fff;
+        }
+
+        .add-elements-button {
+            background-color: #e74c3c;
+            color: #fff;
+        }
+
+        .element-group {
+            position: absolute;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .element {
+            font-size: 30px; /* 元素的默认大小 */
+            position: absolute;
+        }
+
+        .basketball {
+            z-index: -1; /* 将篮球放在背后 */
+            left: 18px; /* 根据需要进行调整，调整位置 */
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img class="chicken-mountain" src="https://bluefoxyu.github.io/KunLunMountainPhotos/%E5%9D%A4%E4%BB%91%E5%B1%B12.jpg" alt="chicken-mountain">
+        <div class="title-container">
+            <p class="title">坤仑山风光</p>
+            <button class="color-change-button" onclick="changeBackgroundColor()">坤颜大变</button>
+            <button class="add-elements-button" onclick="addElements()">闻坤起舞</button>
+        </div>
+    </div>
+
+    <script>
+        function changeBackgroundColor() {
+            const randomColor1 = getRandomColor();
+            const randomColor2 = getRandomColor();
+            const gradient = `linear-gradient(45deg, ${randomColor1}, ${randomColor2})`;
+            document.body.style.background = gradient;
+        }
+
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        function createFloatingElementGroup() {
+            const groupContainer = document.createElement('div');
+            groupContainer.className = 'element-group';
+
+            createFloatingElement('🐔', 'chicken', 40, groupContainer);
+            createFloatingElement('🏀', 'basketball', 30, groupContainer);
+
+            document.body.appendChild(groupContainer);
+
+            const randomX = Math.random() * window.innerWidth;
+            const randomY = Math.random() * window.innerHeight;
+
+            groupContainer.style.left = `${randomX}px`;
+            groupContainer.style.top = `${randomY}px`;
+
+            setTimeout(() => {
+                groupContainer.remove();
+            }, 5000);
+        }
+
+        function createFloatingElement(content, className, size, parent) {
+            const element = document.createElement('div');
+            element.textContent = content;
+            element.className = `element ${className}`;
+            element.style.fontSize = `${size}px`;
+            parent.appendChild(element);
+        }
+
+        function addElements() {
+            createFloatingElementGroup();
+        }
+    </script>
+</body>
+</html>
