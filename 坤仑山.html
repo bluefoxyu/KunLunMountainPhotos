@@ -12,9 +12,10 @@
             align-items: center;
             justify-content: center;
             height: 100vh;
-            background: linear-gradient(45deg, #3498db, #e74c3c, #2ecc71); /* 默认背景 */
+            background: linear-gradient(45deg, #3498db, #e74c3c, #2ecc71);
             transition: background 0.5s ease;
             position: relative;
+            animation: gradientChange 10s infinite alternate;
         }
 
         .container {
@@ -23,25 +24,25 @@
         }
 
         .chicken-mountain {
-            width: 60vw; /* 调整宽度，根据需要 */
-            max-height: 85vh; /* 设置最大高度以保持纵横比 */
+            width: 60vw;
+            max-height: 85vh;
             object-fit: cover;
-            border: 10px solid #fff; /* 添加漂亮的边框 */
-            border-radius: 15px; /* 可选：为边框添加圆角效果 */
-            filter: brightness(70%); /* 添加轻微的亮度滤镜 */
+            border: 10px solid #fff;
+            border-radius: 15px;
+            filter: brightness(70%);
         }
 
         .title-container {
-            background-color: rgba(255, 255, 255, 0.8); /* 半透明白色背景 */
+            background-color: rgba(255, 255, 255, 0.8);
             padding: 10px;
-            border: 5px solid #fff; /* 添加漂亮的边框 */
-            border-radius: 15px; /* 可选：为边框添加圆角效果 */
-            filter: brightness(70%); /* 添加轻微的亮度滤镜 */
+            border: 5px solid #fff;
+            border-radius: 15px;
+            filter: brightness(70%);
         }
 
         .title {
-            font-family: 'Cursive', cursive; /* 更改字体风格 */
-            color: #000; /* 标题文字颜色，可根据需要调整 */
+            font-family: 'Cursive', cursive;
+            color: #000;
             font-size: 2em;
             margin: 0;
         }
@@ -72,13 +73,22 @@
         }
 
         .element {
-            font-size: 30px; /* 元素的默认大小 */
+            font-size: 30px;
             position: absolute;
         }
 
         .basketball {
-            z-index: -1; /* 将篮球放在背后 */
-            left: 18px; /* 根据需要进行调整，调整位置 */
+            z-index: -1;
+            left: 18px;
+        }
+
+        @keyframes gradientChange {
+            0% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 100% 50%;
+            }
         }
 
         @keyframes float {
@@ -149,6 +159,9 @@
         function addElements() {
             createFloatingElementGroup();
         }
+
+        setInterval(changeBackgroundColor, 10000); // Change color every 10 seconds
     </script>
 </body>
 </html>
+
